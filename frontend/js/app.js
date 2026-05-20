@@ -48,13 +48,13 @@ function createCardHTML(joke) {
                 <div class="joke-rating">${stars}</div>
                 <div class="joke-date">📅 ${formatDate(joke.createdAt)}</div>
                 <div class="joke-actions">
-                    <button class="pin-btn ${isPinned ? 'active' : ''}" data-id="${joke.id}" data-action="pin">
+                    <button class="pin-btn ${isPinned ? 'active' : ''}" data-id="${joke.id}">
                         📌 ${isPinned ? 'Открепить' : 'Закрепить'}
                     </button>
-                    <button class="archive-btn" data-id="${joke.id}" data-action="archive">
+                    <button class="archive-btn" data-id="${joke.id}">
                         🗄 ${isArchived ? 'Восстановить' : 'Архивировать'}
                     </button>
-                    <button class="delete-btn" data-id="${joke.id}" data-action="delete">
+                    <button class="delete-btn" data-id="${joke.id}">
                         🗑 Удалить
                     </button>
                 </div>

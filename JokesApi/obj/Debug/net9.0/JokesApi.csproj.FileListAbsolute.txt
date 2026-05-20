@@ -146,3 +146,4 @@ C:\Users\Женя\Desktop\Zhenek_Joke\JokesApi\obj\Debug\net9.0\JokesApi.pdb
 C:\Users\Женя\Desktop\Zhenek_Joke\JokesApi\obj\Debug\net9.0\JokesApi.genruntimeconfig.cache
 C:\Users\Женя\Desktop\Zhenek_Joke\JokesApi\obj\Debug\net9.0\ref\JokesApi.dll
 C:\Users\Женя\Desktop\Zhenek_Joke\JokesApi\bin\Debug\net9.0\JokesApi.staticwebassets.runtime.json
+C:\Users\Женя\Desktop\Zhenek_Joke\JokesApi\obj\Debug\net9.0\JokesApi.sourcelink.json
