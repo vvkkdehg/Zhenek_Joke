@@ -1,61 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>😂 Анекдоты про Евгения</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>
-            <span class="emoji">😂</span>
-            <span class="title-text">Анекдоты про Евгения</span>
-            <span class="emoji">🤣</span>
-        </h1>
-        
-        <div class="stats">
-            <p id="jokesCount">Всего анекдотов: 0</p>
+      <h1>
+        <span class="emoji">😂</span>
+        <span class="title-text">Анекдоты про Евгения</span>
+        <span class="emoji">🤣</span>
+      </h1>
+
+      <div class="stats">
+        <p id="jokesCount">Всего анекдотов: 0</p>
+      </div>
+
+      <div class="add-form">
+        <h2>➕ Добавить новый анекдот</h2>
+        <div class="error-message" id="errorMessage"></div>
+
+        <input type="text" id="jokeTitle" placeholder="Текст анекдота" maxlength="500" />
+        <textarea id="jokeContent" placeholder="Подробности (необязательно)" rows="3"></textarea>
+
+        <select id="jokeCategory">
+          <option value="1">💼 Евгений и работа</option>
+          <option value="2">📚 Евгений и учёба</option>
+          <option value="3">💻 Евгений и программирование</option>
+          <option value="4">😊 Евгений и жизнь</option>
+        </select>
+
+        <select id="jokeRating">
+          <option value="1">⭐ 1</option>
+          <option value="2">⭐⭐ 2</option>
+          <option value="3">⭐⭐⭐ 3</option>
+          <option value="4" selected>⭐⭐⭐⭐ 4</option>
+          <option value="5">⭐⭐⭐⭐⭐ 5</option>
+        </select>
+
+        <input type="file" id="jokeImageFile" accept="image/*" />
+        <div id="imagePreview" style="display: none; margin-top: 10px; margin-bottom: 10px">
+          <img id="previewImg" style="max-width: 200px; max-height: 150px; border-radius: 10px; border: 3px solid #333" />
+          <button
+            type="button"
+            id="removeImageBtn"
+            style="
+              margin-left: 10px;
+              padding: 5px 10px;
+              background: #ff6b6b;
+              color: white;
+              border: none;
+              border-radius: 20px;
+              cursor: pointer;
+            "
+          >
+            ✖ Удалить
+          </button>
         </div>
-        
-        <div class="add-form">
-            <h2>➕ Добавить новый анекдот</h2>
-            <div class="error-message" id="errorMessage"></div>
-            
-            <input type="text" id="jokeTitle" placeholder="Текст анекдота" maxlength="500">
-            <textarea id="jokeContent" placeholder="Подробности (необязательно)" rows="3"></textarea>
-            
-            <select id="jokeCategory">
-                <option value="1">💼 Евгений и работа</option>
-                <option value="2">📚 Евгений и учёба</option>
-                <option value="3">💻 Евгений и программирование</option>
-                <option value="4">😊 Евгений и жизнь</option>
-            </select>
-            
-            <select id="jokeRating">
-                <option value="1">⭐ 1</option>
-                <option value="2">⭐⭐ 2</option>
-                <option value="3">⭐⭐⭐ 3</option>
-                <option value="4" selected>⭐⭐⭐⭐ 4</option>
-                <option value="5">⭐⭐⭐⭐⭐ 5</option>
-            </select>
-            
-            <input type="text" id="jokeImageUrl" placeholder="URL фото">
-            
-            <button id="addBtn">➕ Добавить анекдот</button>
-        </div>
-        
-        <div class="filters">
-            <label>
-                <input type="checkbox" id="showArchived"> 📂 Показать архивные анекдоты
-            </label>
-        </div>
-        
-        <div class="loading" id="loading">Загружаем анекдоты...</div>
-        <div class="jokes-grid" id="jokesGrid"></div>
+
+        <button id="addBtn">➕ Добавить анекдот</button>
+      </div>
+
+      <div class="filters">
+        <label> <input type="checkbox" id="showArchived" /> 📂 Показать архивные анекдоты </label>
+      </div>
+
+      <div class="loading" id="loading">Загружаем анекдоты...</div>
+      <div class="jokes-grid" id="jokesGrid"></div>
     </div>
-    
+
     <script src="js/api.js"></script>
     <script src="js/app.js"></script>
-</body>
+  </body>
 </html>

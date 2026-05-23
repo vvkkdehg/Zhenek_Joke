@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using JokesApi.Helpers;
 using JokesApi.Models;
 using JokesApi.Data;
+using JokesApi.Services;
 using JokesApi.Models.DTOs;
 using JokesApi.Repositories;
 
@@ -39,20 +40,38 @@ public class JokesController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult<ApiResponse<JokeResponseDto>>> Create([FromBody] CreateJokeDto dto)
+    public async Task<ActionResult<ApiResponse<JokeResponseDto>>> Create([FromForm] CreateJokeDto dto)
     {
         var categoryExists = await _db.Categories.AnyAsync(c => c.Id == dto.CategoryId);
         if (!categoryExists)
             return BadRequest(ApiError.BadRequest($"Категория с id={dto.CategoryId} не существует"));
+        
+        string? imageUrl = null;
+        
+        if (dto.ImageFile != null)
+        {
+            try
+            {
+                var fileService = HttpContext.RequestServices.GetRequiredService<IFileUploadService>();
+                imageUrl = await fileService.SaveImageAsync(dto.ImageFile);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ApiError.BadRequest(ex.Message));
+            }
+        }
+        
+        if (string.IsNullOrEmpty(imageUrl))
+        {
+            imageUrl = $"https://picsum.photos/id/{new Random().Next(1, 200)}/200/150";
+        }
         
         var joke = new Joke
         {
             Title = dto.Title.Trim(),
             Content = dto.Content.Trim(),
             Rating = dto.Rating,
-            ImageUrl = string.IsNullOrWhiteSpace(dto.ImageUrl) 
-                ? $"https://picsum.photos/id/{new Random().Next(1, 200)}/200/150"
-                : dto.ImageUrl,
+            ImageUrl = imageUrl,
             CategoryId = dto.CategoryId,
             IsPinned = false,
             IsArchived = false,
